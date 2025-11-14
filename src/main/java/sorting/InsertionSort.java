@@ -11,7 +11,7 @@ public class InsertionSort {
 
     public int[] getArray() { return this.array; }
 
-    // move shift to utils? use swap?
+    // move shift to utils?
     private static void shiftRight(int[] nums, int start, int end) {
         int toSwap = nums[end];
         for (; start <= end; start++) {
