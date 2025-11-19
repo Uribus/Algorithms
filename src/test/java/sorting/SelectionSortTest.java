@@ -9,11 +9,11 @@ import java.util.Arrays;
 
 public class SelectionSortTest {
     
-    private SelectionSort sorter = new SelectionSort();
+    private final SelectionSort sorter = new SelectionSort();
     private static final int SIZE = 15;
     private static final Random random = new Random(41);
 
-    private static int[] generateValues(Random random, int size, int min, int max) {
+    private static int[] generateValues(int size, int min, int max) {
         int[] array = new int[size];
         for (int i = 0; i < size; i++) {
             array[i] = random.nextInt(max - min + 1) + min;
@@ -24,7 +24,7 @@ public class SelectionSortTest {
 
     @Test
     public void assertArrayNegativesOnlyOrdered() {
-        int[] negatives = generateValues(random, SIZE, -100, -1);
+        int[] negatives = generateValues(SIZE, -100, -1);
         int[] copy = negatives.clone();
         
         sorter.sort(negatives);
@@ -35,7 +35,7 @@ public class SelectionSortTest {
     
     @Test
     public void assertArrayPositivesOnlyOrdered() {
-        int[] positives = generateValues(random, SIZE, 1, 100);
+        int[] positives = generateValues(SIZE, 1, 100);
         int[] copy = positives.clone();
 
         sorter.sort(positives);
@@ -46,7 +46,7 @@ public class SelectionSortTest {
 
     @Test
     public void assertArrayOrdered() {
-        int[] array = generateValues(random, SIZE, -50, 50);
+        int[] array = generateValues(SIZE, -50, 50);
         int[] copy = array.clone();
 
         sorter.sort(array);
