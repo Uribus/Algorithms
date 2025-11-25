@@ -14,6 +14,11 @@ public class SelectionSortTest {
     private static final Random random = new Random(41);
 
     private static int[] generateValues(int size, int min, int max) {
+        if (max < min) {
+            int temp = max;
+            max = min;
+            min = temp;
+        }
         int[] array = new int[size];
         for (int i = 0; i < size; i++) {
             array[i] = random.nextInt(max - min + 1) + min;
@@ -23,7 +28,7 @@ public class SelectionSortTest {
     }
 
     @Test
-    public void assertArrayNegativesOnlyOrdered() {
+    public void assertArrayIntegerNegativesOnlyOrdered() {
         int[] negatives = generateValues(SIZE, -100, -1);
         int[] copy = negatives.clone();
         
@@ -34,7 +39,7 @@ public class SelectionSortTest {
     }
     
     @Test
-    public void assertArrayPositivesOnlyOrdered() {
+    public void assertArrayIntegerPositivesOnlyOrdered() {
         int[] positives = generateValues(SIZE, 1, 100);
         int[] copy = positives.clone();
 
@@ -45,7 +50,7 @@ public class SelectionSortTest {
     }
 
     @Test
-    public void assertArrayOrdered() {
+    public void assertArrayIntegersOrdered() {
         int[] array = generateValues(SIZE, -50, 50);
         int[] copy = array.clone();
 
