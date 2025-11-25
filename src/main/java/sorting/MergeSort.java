@@ -6,20 +6,29 @@ public class MergeSort {
 
     private static void merge(int[] array, int start, int mid, int end) {
         int right = mid + 1;
-
-        while (start <= mid && right <= end) {
-            while (array[start] < array[right]) {
-                start++;
+        int left = start;
+        while (right <= end) {
+            while (array[left] < array[right] && left <= mid) {
+                left++;
             }
             
-            if (start <= mid) {
-                int k = start;
+            if (left <= mid) {
+                int k = left;
                 while (k <= mid) {
                     swap(array, k, right);
                     k++;
                 }
             }
-            right++;
+
+            for (int aux = right; aux < end; aux++) {
+                if (array[aux] > array[aux+1]){
+                    swap(array, aux, aux + 1);
+                }
+            }
+            if (left >= mid && right <= end) {
+                right++;
+                left = start;
+            }
         }
 
         right = mid + 1;
@@ -40,8 +49,9 @@ public class MergeSort {
     private static void order(int[] array, int start, int end) {
         if (start != end) {
             if (end - start == 1) {
-                if (array[end] < array[start])
+                if (array[end] < array[start]) {
                     swap(array, start, end);
+                }
             }
             else {
                 int mid = (end + start) / 2;
@@ -58,8 +68,8 @@ public class MergeSort {
         }
     }
     public static void main(String[] args) {
-        int[] toSort = new int[] {-12, 32, 0, 4, -24, 98, 74, -81, -3};
-
+        //int[] toSort = new int[] {-12, 32, 0, 4, -24, 98, 74, -81, -3};
+        int[] toSort = new int[] {-77, -1, -42, -4, -24, -98, -74, -81, -3};
         sort(toSort);
 
         System.out.println(Arrays.toString(toSort));

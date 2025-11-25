@@ -11,7 +11,12 @@ public class InsertionSortTest {
     private static final Random random = new Random(42);
     private InsertionSort sorter = new InsertionSort();
 
-    private static int[] generateValues(Random random, int size, int max, int min) {
+    private static int[] generateValues(int size, int max, int min) {
+        if (max < min) {
+            int temp = max;
+            max = min;
+            min = temp;
+        }
         int[] array = new int[size];
 
         for (int i = 0; i < size; i ++)
@@ -21,8 +26,8 @@ public class InsertionSortTest {
     }
 
     @Test
-    public void assertArrayNegativesOnlySorted() {
-        int[] arrayNegatives = generateValues(random, SIZE, -1, -100);
+    public void assertArrayIntegerNegativesOnlySorted() {
+        int[] arrayNegatives = generateValues(SIZE, -1, -100);
         int[] copy = arrayNegatives.clone();
 
         Arrays.sort(copy);
@@ -32,8 +37,8 @@ public class InsertionSortTest {
     }
 
     @Test
-    public void assertArrayPositivesOnlySorted() {
-        int[] arrayPositives = generateValues(random, SIZE, 100, 1);
+    public void assertArrayIntegerPositivesOnlySorted() {
+        int[] arrayPositives = generateValues(SIZE, 100, 1);
         int[] copy = arrayPositives.clone();
 
         Arrays.sort(copy);
@@ -44,7 +49,7 @@ public class InsertionSortTest {
 
     @Test
     public void assertArrayIntegersSorted() {
-        int[] array = generateValues(random, SIZE, 145, -200);
+        int[] array = generateValues(SIZE, 145, -200);
         int[] copy = array.clone();
 
         Arrays.sort(copy);
